@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electron App</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: transparent;
+            color: white;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            -webkit-app-region: drag; /* Перетаскиваемое окно */
+            user-select: none; /* Запрет выделения текста */
+            border: 1px solid tomato;
+        }
+        button {
+            padding: 2px 2px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #555;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            -webkit-app-region: no-drag; /* Кнопка НЕ перетаскивается */
+        }
+        p {
+          padding: 8px;
+          margin: 0;
+          -webkit-app-region: drag; /* Перетаскиваемое окно */
+          user-select: none; /* Запрет выделения текста */
+        }
+    </style>
+</head>
+<body>
+  <h1>Tab Switcher</h1>
+  <button id="ctrl-tab">Ctrl + Tab</button>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+        
+        document.getElementById('ctrl-tab').addEventListener('click', () => {
+        // Отправляем команду на эмуляцию нажатия сочетания клавиш
+        ipcRenderer.send('toggle-window');
+    });
+    </script>
+</body>
+</html>
