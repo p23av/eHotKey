@@ -5,7 +5,7 @@ let win;
 
 app.whenReady().then(() => {
   win = new BrowserWindow({
-    width: 400,
+    width: 80,
     height: 200,
     alwaysOnTop: true,
     focusable: false,
@@ -20,8 +20,24 @@ app.whenReady().then(() => {
 
   win.loadFile('index.html');
 
-  ipcMain.on('toggle-window', () => {
+  ipcMain.on('nextTab', () => {
     ks.sendCombination(['control', 'tab']);
+  })
+
+  ipcMain.on('prevTab', () => {
+    ks.sendCombination(['control', 'shift', 'tab']);
+  })
+
+  ipcMain.on('refreshTab', () => {
+    ks.sendCombination(['control', 'r']);
+  })
+
+  ipcMain.on('returnTab', () => {
+    ks.sendCombination(['control', 'shift', 't']);
+  })
+
+  ipcMain.on('closeTab', () => {
+    ks.sendCombination(['control', 'w']);
   })
 });
 
